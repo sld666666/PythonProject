@@ -52,13 +52,17 @@ class Convertor :
     def exuteInFolder(self, tag, category, targetPath):
         for lists in os.listdir(targetPath):
             path = os.path.join(targetPath, lists)
-            if len(category) == 0 :
-                category = lists.replace(".md", "")
 
+            tmpCategory = category
             if os.path.isdir(path):
-                self.exuteInFolder(tag, category, path)
+                if len(tmpCategory) == 0:
+                    tmpCategory = lists
+                self.exuteInFolder(tag, tmpCategory, path)
             else:
-                self.excuteAsFile(path, tag, category, lists.replace(".md", ""))
+                if len(tmpCategory) == 0 :
+                    tmpCategory = tag
+                if lists.endswith('.md'):
+                    self.excuteAsFile(path, tag, tmpCategory, lists.replace(".md", ""))
 
     def excuteAsFile(self, filePath, tag, category, fileName):
         f = codecs.open(filePath,'r', 'utf-8')
@@ -81,5 +85,3 @@ class Convertor :
         f = codecs.open(filePath, 'w', 'utf-8')
         f.write(prefix)
         f.close()
-
-

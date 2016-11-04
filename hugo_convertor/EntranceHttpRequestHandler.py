@@ -1,34 +1,43 @@
 import http.server
 import Convertor
 import os
+import _thread
 
+TargetPath = "/root/root/site/content/post/blog"
+GitSrcPath = "/root/root/site/blog"
+HugeSitePath = "/root/root/site/"
+HugeStatCommond = r'hugo server --buildDrafts -p 80 --bind 115.28.83.94 -b http://115.28.83.94/'
 class EntranceHttpRequestHandler(http.server.CGIHTTPRequestHandler):
 
     def do_POST(self):
-        gitPath = "/root/root/site/blog"
-        self.gitpull(gitPath)
+        print('begin')
+
+        self.gitpull(GitSrcPath)
 
         self.stopHugo()
 
         convert = Convertor.Convertor()
-        convert.excute(gitPath,
-                        "/root/root/site/content/post/blog")
+        convert.excute(GitSrcPath,TargetPath)
         self.startHugo()
         print("finished")
-        self.wfile.write(b"aabbcc")
+        self.wfile.write(b"msg finished")
 
 
     def gitpull(self,  filePath):
         os.chdir(filePath)
-
-        #gitPath = "\"C:\\Program Files (x86)\\Git\\bin\\git.exe\""
         command = "git pull "
         os.system(command)
 
     def startHugo(self):
-        os.chdir("E:\green\hugo\hub_site")
-        os.popen(r'hugo server --buildDrafts -p 80 --bind 115.28.83.94 -b http://115.28.83.94/')
+        _thread.start_new_thread(self.doStartHugo, ())
+
+    def doStartHugo(self):
+        os.chdir(HugeSitePath)
+        output = os.system(HugeStatCommond)
+        print(output)
+        print('sartHugo finished')
 
     def stopHugo(self):
         command = 'kill -9 $(pidof hugo)'
         os.system(command)
+        print('stopHugo finished')
