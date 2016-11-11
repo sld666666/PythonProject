@@ -1,4 +1,4 @@
-from WebCrawler.database.IDatabase import IDatabase
+from database.IDatabase import IDatabase
 import pymongo
 
 class MongodbDatabase(IDatabase):

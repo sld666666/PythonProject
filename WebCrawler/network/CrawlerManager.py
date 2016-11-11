@@ -1,10 +1,10 @@
-
-from WebCrawler.network.imp.HttpUrlContentFetcher import HttpUrlContentFetcher
-from WebCrawler.parser.Parser import Parser
-import logging
 import copy
+import logging
 import time
-from  WebCrawler.database.MongodbDatabase import MongodbDatabase
+
+from database.MongodbDatabase import MongodbDatabase
+from network.HttpUrlContentFetcher import HttpUrlContentFetcher
+from parserer.Parser import Parser
 
 FinishedUrlsQuery = {"key":"finishedUrls"}
 ChildrenKey = "children"

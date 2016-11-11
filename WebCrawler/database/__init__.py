@@ -1,6 +1,6 @@
 
-from WebCrawler.database.IDatabase import IDatabase
-from  WebCrawler.database.MongodbDatabase import MongodbDatabase
+from database.IDatabase import IDatabase
+from  database.MongodbDatabase import MongodbDatabase
 
 if __name__ == '__main__':
     database = MongodbDatabase()

@@ -3,7 +3,7 @@
 import unittest
 import logging
 
-from WebCrawler.parser import Parser
+from parser import Parser
 
 class ParserTestor(unittest.TestCase):
 

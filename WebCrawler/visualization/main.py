@@ -1,7 +1,11 @@
+import sys
+import os
+parent = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
+sys.path.append(parent)
+print(sys.path)
 
-
-from  WebCrawler.database.MongodbDatabase import MongodbDatabase
-from WebCrawler.visualization.CsvParser import CsvWriter
+from  database.MongodbDatabase import MongodbDatabase
+from visualization.CsvParser import CsvWriter
 
 if "__main__" == __name__:
     db = MongodbDatabase()

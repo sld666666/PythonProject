@@ -1,5 +1,5 @@
 
-import WebCrawler.network.interface.IPage as IP
+import network.IPage as IP
 
 BaseTagUrl = 'https://book.douban.com/tag/'
 

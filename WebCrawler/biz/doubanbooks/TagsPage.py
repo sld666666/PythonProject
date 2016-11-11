@@ -1,6 +1,7 @@
-
-import WebCrawler.network.interface.IPage as IP
 import logging
+
+import network.IPage as IP
+
 
 class TagsPage(IP.IPage):
 

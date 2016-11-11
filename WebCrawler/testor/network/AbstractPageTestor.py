@@ -1,7 +1,7 @@
 
 
 import unittest
-import WebCrawler.network.imp.AbstractPage as AP
+import network.imp.AbstractPage as AP
 
 class HttpUrlContentFetcher(unittest.TestCase) :
 

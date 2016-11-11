@@ -1,7 +1,8 @@
 
 import  unittest
-#import WebCrawler.network.imp.HttpUrlContentFetcher
-from WebCrawler.network.imp import HttpUrlContentFetcher
+#import network.imp.HttpUrlContentFetcher
+from network import HttpUrlContentFetcher
+
 
 class HttpUrlContentFetcherTestor(unittest.TestCase):
 

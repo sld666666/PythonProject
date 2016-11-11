@@ -1,10 +1,16 @@
 
-import WebCrawler.biz.doubanbooks.BooksPage as BP
-import WebCrawler.biz.doubanbooks.TagsPage as TP
-import WebCrawler.biz.doubanbooks.SubjectPage as SP
-from  WebCrawler.network.CrawlerManager import CrawlerMannager
-import logging
 import sys
+import os
+parent = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
+parent = os.path.abspath(os.path.join(parent, os.pardir))
+sys.path.append(parent)
+print(sys.path)
+
+import biz.doubanbooks.BooksPage as BP
+import biz.doubanbooks.TagsPage as TP
+import biz.doubanbooks.SubjectPage as SP
+from  network.CrawlerManager import CrawlerMannager
+import logging
 
 def initLog():
      logging.basicConfig(
