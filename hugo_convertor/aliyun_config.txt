@@ -1,0 +1,4 @@
+TargetPath = "/root/root/site/content/post/blog"
+GitSrcPath = "/root/root/site/blog"
+HugeSitePath = "/root/root/site/"
+HugeStatCommond = r'hugo server --buildDrafts -p 80 --bind 115.28.83.94 -b http://115.28.83.94/'
