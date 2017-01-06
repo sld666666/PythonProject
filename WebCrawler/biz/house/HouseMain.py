@@ -10,6 +10,7 @@ print(sys.path)
 
 import biz.initialization as init
 import biz.house.XmcxMorePage as XP
+import logging
 
 
 def begin(indexUrl, baseUrl):
@@ -25,4 +26,6 @@ def begin(indexUrl, baseUrl):
 if __name__=='__main__':
     init.initSys()
     init.initLog()
+    logging.debug("begin")
     begin('http://www.hzfc.gov.cn/scxx/xmcx_more.php', 'http://www.hzfc.gov.cn')
+    logging.debug("finished")
