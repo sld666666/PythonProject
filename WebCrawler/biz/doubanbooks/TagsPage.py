@@ -16,11 +16,16 @@ class TagsPage(IP.IPage):
 
                 title = self.getTitle(a)
                 score = self.getScore(subjectItem)
+                pl = self.getPl(subjectItem)
+                tmp = {}
 
+                if None != pl:
+                    tmp['pl'] = pl
                 if None != title and None != score:
-                    tmp = {}
+
                     tmp['title'] = title
                     tmp['score'] = score
+                    tmp['']
                     rtn.append(tmp)
 
         nextUrl = self.getNextUrl(soup)
@@ -43,6 +48,13 @@ class TagsPage(IP.IPage):
         try :
             title = aNode['title']
             return title
+        except:
+            return  None
+
+    def getPl(self, subjectItem):
+        try :
+            pl = subjectItem.find('span', {'class' : 'rating_nums'}).contents[0]
+            return pl
         except:
             return  None
 

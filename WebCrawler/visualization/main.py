@@ -6,11 +6,18 @@ print(sys.path)
 
 from  database.MongodbDatabase import MongodbDatabase
 from visualization.CsvParser import CsvWriter
+from visualization.DbAccess import  DbAccess
 
 if "__main__" == __name__:
+    dbAccess = DbAccess()
+    urlTree = dbAccess.getUrlTree()
+
+
+
+def test1():
     db = MongodbDatabase()
     print("begin")
-    db.init('localhost', 27017, "book")
+    db.init('115.28.83.94', 27017, "book")
     rtns =db.get({})
 
     books = []
@@ -26,4 +33,4 @@ if "__main__" == __name__:
     csvWriter = CsvWriter()
     csvWriter.write('result.csv', books)
     print('finished')
-    i = 0
+

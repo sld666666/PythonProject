@@ -24,8 +24,14 @@ class CrawlerMannager:
             tmp.update({'value':{}})
             self.database.add(tmp)
         else:
-            self.finishedUrls = FinishedUrls.fromDict(self.database.get(FinishedUrlsQuery)[0]['value'])
+            finishedUrlDict = self.database.get(FinishedUrlsQuery)[0]['value']
+            if len(finishedUrlDict) > 0:
+                self.finishedUrls = FinishedUrls.fromDict(finishedUrlDict)
 
+    def init(self, indexUrl, tag):
+        content = self.contentFetcher.getContentInBytes(indexUrl)
+        self.contentFetcher.setCodec(self.contentFetcher.getcodec(content)['encoding'])
+        self.tag = tag
 
     def setBaseUrl(self, url):
         self.baseUrl = url
@@ -58,6 +64,8 @@ class CrawlerMannager:
         self.save(url, pageContent)
 
         for nextUrl in nextUrls:
+            if None == nextUrl: continue
+
             self.excute(self.getNexPageUrl(nextUrl), url)
 
     def saveUrl(self, url, parentUrl):
@@ -68,8 +76,14 @@ class CrawlerMannager:
 
     def getPage(self, url):
         for page in self.pages:
-            if url.find(page.getKeyword()) > 0 :
-                return page;
+            keyword = page.getKeyword()
+            if type(keyword) is list:
+                for one in keyword:
+                    if url.find(one) > 0 :
+                        return  page
+            else:
+                if url.find(page.getKeyword()) > 0 :
+                    return page
 
         return None
 
@@ -83,6 +97,7 @@ class CrawlerMannager:
         tmp = {}
         tmp['url'] = url
         tmp['content'] = content
+        tmp['tag']= self.tag
         self.database.add(tmp)
         pass
 

@@ -1,0 +1,19 @@
+{
+  "message": "正在检测,请稍候!",
+  "code": 200,
+  "data": {
+    "status": 2,
+    "package": "com.souche.fengche",
+    "versionName": "5.4.0",
+    "appName": "大风车",
+    "versionCode": "7123",
+    "size": "20.33",
+    "type": 0,
+    "uploadTime": "2016/11/28 22:13:03",
+    "md5": "01396c82f2112db7db747ffc5d2b7938"
+  },
+  "success": true,
+  "ret": 3
+}
+
+"file:///E:\淘盘\sld666666\softvs\code-markdown.css"

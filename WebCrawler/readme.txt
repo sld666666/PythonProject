@@ -1,0 +1,1 @@
+depend: pymongo,beautifulsoup4 

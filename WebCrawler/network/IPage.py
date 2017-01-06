@@ -1,7 +1,7 @@
 
 
 class IPage:
-    def analysis(self, soup, nextPageContent):
+    def analysis(self, soup, nextPages):
         raise NotImplementedError( "Should have implemented this" )
 
     def getKeyword(self):

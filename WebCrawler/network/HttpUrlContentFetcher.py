@@ -6,7 +6,8 @@ import logging
 import http.cookiejar
 import gzip
 import io
-
+from chardet.universaldetector import UniversalDetector
+import chardet
 Headers = {'Connection':'keep-alive',
             'Cache-Control': 'max-age=0',
            'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -22,8 +23,22 @@ CookieFilename = 'cookie.txt'
 class HttpUrlContentFetcher :
     def __init__(self):
         self.cookie = None
+        self.codec = 'UTF-8'
+
+
+    def setCodec(self, codec):
+        self.codec = codec
 
     def fetcher(self, url):
+        content = self.getContentInBytes(url)
+        try:
+            html = content.decode(self.codec)
+        except:
+            html = content.decode(self.getcodec(content)['encoding'])
+
+        return html
+
+    def getContentInBytes(self, url):
         parserResult = parse.urlparse(url)
         parserResult = parserResult._replace(path= urllib.parse.quote(parserResult.path))
         url = parse.urlunparse(parserResult)
@@ -37,12 +52,11 @@ class HttpUrlContentFetcher :
             response = opener.open(req)
             gzip_f = gzip.GzipFile(fileobj=io.BytesIO(response.read()))
             content = gzip_f.read()
-            html = content.decode('UTF-8')
         except Exception as e:
             logging.error('#fetchr url:%s', url + ":" + str(e))
-            html=None
+            content=None
 
-        return html
+        return content
 
     def getCookie(self, url):
         try:
@@ -63,3 +77,17 @@ class HttpUrlContentFetcher :
             return  cookie
         except Exception as e:
             return  None
+
+    def getcodec(self, content):
+        detector = UniversalDetector()
+        for line in io.BytesIO(content).readlines():
+            detector.feed(line)
+            if detector.done: break
+
+
+        detector.close()
+
+        if  'gb2312' == detector.result['encoding'].lower():
+            detector.result['encoding'] = "GBK"
+
+        return  detector.result
