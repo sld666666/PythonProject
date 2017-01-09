@@ -41,8 +41,8 @@ class CrawlerMannager:
         self.pages.append(page)
 
     def excute(self, url, parentUrl):
-        if self.finishedUrls.isFinished(url):
-            return
+   #     if self.finishedUrls.isFinished(url):
+   #         return
 
         self.saveUrl(url, parentUrl)
         print(url)
