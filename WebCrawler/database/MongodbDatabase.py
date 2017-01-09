@@ -1,10 +1,13 @@
 from database.IDatabase import IDatabase
 import pymongo
 
+USENAME = 'sld'
+PASSWORLD = 'sld123'
 class MongodbDatabase(IDatabase):
 
     def init(self, ip, host, dbname):
-        client =  pymongo.MongoClient(ip,host)
+        url = 'mongodb://{}:{}@{}:{}'.format(USENAME, PASSWORLD,ip,host)
+        client =  pymongo.MongoClient(url)
         self.connection = client[dbname][dbname]
 
     def get(self, key):
