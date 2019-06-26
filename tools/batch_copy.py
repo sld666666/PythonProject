@@ -3,9 +3,21 @@ import shutil
 import  json
 import  os
 import sys
+import filecmp
 
 
-def copytree2(src, dst, symlinks=False, ignore=None, copy_function=shutil.copy2,
+def isDiff(src, dst, commonFile):
+    common = []
+    common.append(commonFile)
+    diff = filecmp.cmpfiles(src, dst, common)
+    print(diff)
+    return (diff[0] != commonFile)
+
+def copyIfDif(src, dst):
+    print("do copy#" + src)
+    shutil.copy2(src, dst)
+
+def copytree2(src, dst, symlinks=False, ignore=None, copy_function=copyIfDif,
               ignore_dangling_symlinks=False):
     names = os.listdir(src)
     if ignore is not None:
@@ -20,6 +32,7 @@ def copytree2(src, dst, symlinks=False, ignore=None, copy_function=shutil.copy2,
     for name in names:
         if name in ignored_names:
             continue
+
         srcname = os.path.join(src, name)
         dstname = os.path.join(dst, name)
         try:
@@ -44,6 +57,8 @@ def copytree2(src, dst, symlinks=False, ignore=None, copy_function=shutil.copy2,
             elif os.path.isdir(srcname):
                 copytree2(srcname, dstname, symlinks, ignore, copy_function)
             else:
+                if not isDiff(src, dst, name):
+                    continue
                 # Will raise a SpecialFileError for unsupported file types
                 copy_function(srcname, dstname)
         # catch the Error from the recursive copytree so that we can
@@ -99,7 +114,10 @@ class BatchCopy:
 
 
 if __name__=='__main__':
-    print(sys.argv[1])
+    name = "xplan"
+    if  len(sys.argv)>1:
+        name = sys.argv[1]
+    print(name)
     batchCopy = BatchCopy()
-    batchCopy.copy(sys.argv[1])
+    batchCopy.copy(name)
     print("success!")

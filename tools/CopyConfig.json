@@ -1,6 +1,6 @@
 [
   {
-    "name": "xplay",
+    "name": "xplan",
     "target" : "/Users/luodongshen/Documents/program/github/xplan",
     "source" : "/Users/luodongshen/Documents/program/bwTools/xplan",
     "ignores" : [".git"]
