@@ -1,8 +1,8 @@
 [
   {
     "name": "xplay",
-    "source" : "/Users/luodongshen/Documents/program/github/xplan",
-    "target" : "/Users/luodongshen/Documents/program/bwTools/xplan1",
+    "target" : "/Users/luodongshen/Documents/program/github/xplan",
+    "source" : "/Users/luodongshen/Documents/program/bwTools/xplan",
     "ignores" : [".git"]
   }
 ]

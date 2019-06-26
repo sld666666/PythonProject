@@ -99,7 +99,7 @@ class BatchCopy:
 
 
 if __name__=='__main__':
-    print(sys.argv)
+    print(sys.argv[1])
     batchCopy = BatchCopy()
-    batchCopy.copy("xplay")
+    batchCopy.copy(sys.argv[1])
     print("success!")
