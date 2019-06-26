@@ -58,6 +58,11 @@ class HttpUrlContentFetcher :
 
         return content
 
+    def  saveCookie(self, url, cookie):
+        cookie = http.cookiejar.MozillaCookieJar(CookieFilename)
+        cookie.load()
+        cookie.save()
+
     def getCookie(self, url):
         try:
             cookie = http.cookiejar.MozillaCookieJar(CookieFilename)

@@ -3,6 +3,9 @@ import shutil
 import codecs
 import time
 
+TargetPath = "/Users/luodongshen/Documents/program/hugo-site/content/post"
+GitSrcPath = "/Users/luodongshen/Documents/program/document"
+
 class FolderManager :
 
     def isFolderExist(self, path):
@@ -65,6 +68,7 @@ class Convertor :
                     self.excuteAsFile(path, tag, tmpCategory, lists.replace(".md", ""))
 
     def excuteAsFile(self, filePath, tag, category, fileName):
+        print(filePath)
         f = codecs.open(filePath,'r', 'utf-8')
 
         timeStr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -85,3 +89,7 @@ class Convertor :
         f = codecs.open(filePath, 'w', 'utf-8')
         f.write(prefix)
         f.close()
+
+if __name__ == '__main__':
+        convertor =  Convertor()
+        convertor.excute(GitSrcPath, TargetPath)
