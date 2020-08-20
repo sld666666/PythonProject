@@ -6,6 +6,7 @@ import sys
 import filecmp
 
 
+
 def isDiff(src, dst, commonFile):
     common = []
     common.append(commonFile)
@@ -99,7 +100,7 @@ class BatchCopy:
 
     def getConfig(self, name):
         filepath = os.path.abspath('CopyConfig.json')
-        file = open(filepath, "r")
+        file = open(filepath, "r", encoding = 'utf-8')
         items = json.load(file)
         for item in  items:
             if item["name"] == name:
@@ -118,6 +119,9 @@ if __name__=='__main__':
     if  len(sys.argv)>1:
         name = sys.argv[1]
     print(name)
+
     batchCopy = BatchCopy()
-    batchCopy.copy(name)
+    names = ["books", "ppt", "baiwang-private", "blog"]
+    for name in names :
+        batchCopy.copy(name)
     print("success!")

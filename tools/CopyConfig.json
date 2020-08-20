@@ -1,8 +1,26 @@
 [
   {
-    "name": "xplan",
-    "target" : "/Users/luodongshen/Documents/program/github/xplan",
-    "source" : "/Users/luodongshen/Documents/program/bwTools/xplan",
+    "name": "books",
+    "source" : "/Users/luodongshen/百度云同步盘/books",
+    "target" : "/Volumes/Seagate Backup Plus Drive/books",
+    "ignores" : [".git"]
+  },
+    {
+    "name": "ppt",
+    "source" : "/Users/luodongshen/Documents/ppt",
+    "target" : "/Volumes/Seagate Backup Plus Drive/ppt",
+    "ignores" : [".git"]
+  },
+   {
+    "name": "baiwang-private",
+    "source" : "/Users/luodongshen/Documents/baiwang-private",
+    "target" : "/Volumes/Seagate Backup Plus Drive/baiwang-private",
+    "ignores" : [".git"]
+  },
+  {
+    "name": "blog",
+    "source": "/Users/luodongshen/Documents/program/github/blog",
+    "target": "/Volumes/Seagate Backup Plus Drive/blog",
     "ignores" : [".git"]
   }
 ]
